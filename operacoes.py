@@ -1,4 +1,5 @@
 from constantes import * 
+import random
 
 def cria_mapa(n):
     lista = [' ']*n
@@ -25,3 +26,38 @@ def posicao_suporta (mapa, blocos, linha, coluna, orientacao):
             
     return True 
 
+def alocando(mapa, b, l, c, o):
+    y = len(mapa)
+    if o == 'v':
+        for i in range(l, l+b):
+            mapa[i][c] = 'N'
+
+    elif o == 'h':
+        for i in range(c, c+b):
+            mapa[l][i] = 'N'
+
+    return mapa
+
+def aloca_navios(mapa, lista):
+    n = len(mapa)
+    linha = random.randint(0, n-1)
+    coluna = random.randint(0, n-1)
+    orientacao = random.choice(['h', 'v'])
+    for bloco in lista:
+        x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
+        while x == False:
+            linha = random.randint(0, n-1)
+            coluna = random.randint(0, n-1)
+            orientacao = random.choice(['h', 'v'])
+            x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
+        y = alocando(mapa, bloco, linha, coluna, orientacao)
+        mapa = y
+
+    return mapa
+
+def foi_derrotado(matriz):
+    x = True
+    for lista in matriz:
+        if 'N' in lista:
+            x = False
+    return x    
