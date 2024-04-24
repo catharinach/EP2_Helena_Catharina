@@ -53,4 +53,27 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
     else: 
         print (f'{qtd} {nome_navio}s', end=", " if i <len(frota_escolhida) - 1 else '!')
 
-print('\nSe prepare para alocá-los!')
+print('\nSe prepare para alocá-los!') 
+
+
+def imprimir_navios_restantes(): 
+    print('Navios restantes:')
+    for navio, qtd in frota_escolhida.items():
+        print(f'{qtd} {navio if qtd == 1 else navio + "s"}')
+
+
+imprimir_navios_restantes()
+
+
+while frota_escolhida:
+    for navio, qtd in list(frota_escolhida.items()): 
+        if qtd > 0:
+            print(f'Navio a ser alocado: 1 {navio if qtd == 1 else navio + "s"}')
+            print()
+            frota_escolhida[navio] -= 1
+            if frota_escolhida[navio] == 0:
+                del frota_escolhida[navio]
+            break  
+    imprimir_navios_restantes()
+
+print("Muito bem! Você está pronto para o combate!")
