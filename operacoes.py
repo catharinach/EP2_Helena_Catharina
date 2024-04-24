@@ -85,4 +85,38 @@ def criar_mapa():
     for linha in matriz:
         print(" ".join(linha))
 
+def criar_mapa():
+    matriz_adversario = []
+    matriz_jogador = []
+
+    for i in range(12):
+        linha_adversario = []
+        linha_jogador = []
+        if i == 0 or i == 11:
+            linha_adversario = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
+            linha_jogador = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
+        else:
+            linha_adversario = [' '] * 12
+            linha_jogador = [' '] * 12
+            if i >= 1 and i <= 9:
+                nmr = str(i)
+                lista = [' ', nmr]
+                linha_adversario[0] = str(i)
+                linha_jogador[0] = str(i)
+                linha_adversario[-1] = ''.join(lista)
+                linha_jogador[-1] = ''.join(lista)
+            elif i == 10:
+                linha_adversario[0] = str(i)
+                linha_jogador[0] = str(i)
+                linha_adversario[-1] = str(i)
+                linha_jogador[-1] = str(i)
+        matriz_adversario.append(linha_adversario)
+        matriz_jogador.append(linha_jogador)
+
+    # Imprimindo as matrizes lado a lado
+    print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
+    print( )
+    for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
+        print(" ".join(linha_adv), "   ", " ".join(linha_jog))
+
 criar_mapa()
