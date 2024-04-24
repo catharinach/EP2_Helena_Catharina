@@ -1,6 +1,6 @@
 from constantes import * 
 import random
-linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
+linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', ' ', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
 
 def cria_mapa(n):
     lista = [' ']*n
@@ -63,21 +63,26 @@ def foi_derrotado(matriz):
             x = False
     return x    
 
-def criar_mapa (): 
-    matriz = [ ] 
 
-    for i in range(11):
-        if i == 0:
-            linha = [letra for letra in ALFABETO[:10]]
+def criar_mapa():
+    matriz = []
+
+    for i in range(12):
+        if i == 0 or i == 11:
+            linha = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
         else:
-            linha = [''] * 10
+            linha = [' '] * 12
+            if i >= 1 and i <= 9: 
+                nmr = str(i)
+                lista = [' ', nmr]
+                linha[0] = str(i)  
+                linha[-1] = ''.join(lista)
+            elif i == 10: 
+               linha[0] = str(i) 
+               linha[-1] = str(i) 
         matriz.append(linha)
 
-    
-    for i, linha in enumerate(matriz):
-        linha_formatada = f"{linhas[i]:>2s} "
-        print(linha_formatada, end="")
+    for linha in matriz:
         print(" ".join(linha))
 
-    
-criar_mapa() 
+criar_mapa()
