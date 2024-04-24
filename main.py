@@ -1,1 +1,2 @@
-ola = 2
+from operacoes import * 
+from constantes import * 
