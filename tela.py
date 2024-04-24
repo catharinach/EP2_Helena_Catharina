@@ -1,5 +1,6 @@
 import random
 from constantes import *
+from operacoes import *
 
 print(' ')
 print('Bem-vindo ao INSPER - Batalha Naval')
@@ -42,6 +43,8 @@ for numero, pais in novo_dicionario.items():
         for navio, qtd in PAISES[pais_escolhido].items(): 
             frota_escolhida[navio] = qtd
         break 
+
+criar_mapa()
 
 print(f'Você irá disputar com a frota do país {pais_escolhido}!' ) 
 print('Os navios disponíveis para combate são: ', end='')
