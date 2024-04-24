@@ -1,5 +1,6 @@
 from constantes import * 
 import random
+linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
 
 def cria_mapa(n):
     lista = [' ']*n
@@ -61,3 +62,22 @@ def foi_derrotado(matriz):
         if 'N' in lista:
             x = False
     return x    
+
+def criar_mapa (): 
+    matriz = [ ] 
+
+    for i in range(11):
+        if i == 0:
+            linha = [letra for letra in ALFABETO[:10]]
+        else:
+            linha = [''] * 10
+        matriz.append(linha)
+
+    
+    for i, linha in enumerate(matriz):
+        linha_formatada = f"{linhas[i]:>2s} "
+        print(linha_formatada, end="")
+        print(" ".join(linha))
+
+    
+criar_mapa() 
