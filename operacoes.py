@@ -113,10 +113,10 @@ def criar_mapa():
         matriz_adversario.append(linha_adversario)
         matriz_jogador.append(linha_jogador)
 
-    # Imprimindo as matrizes lado a lado
+
     print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
     print( )
     for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
-        print(" ".join(linha_adv), "   ", " ".join(linha_jog))
+        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
 
 criar_mapa()
