@@ -52,7 +52,7 @@ ALFABETO = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # numeros para nome das linhas 
 linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
 
-# cores para o terminal
+# cores de texto para o terminal
 CORES = {
     'reset': '\u001b[0m',
     'red': '\u001b[31m',
@@ -63,4 +63,12 @@ CORES = {
     'magenta': '\u001b[35m',
     'cyan': '\u001b[36m',
     'white': '\u001b[37m'
+}
+
+#cores de fundo para o terminal
+cores_background = {
+    'red': '\u001b[41m',
+    'green': '\u001b[42m',
+    'blue': '\u001b[44m',
+    'reset': '\u001b[0m'
 }
