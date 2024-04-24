@@ -1,1 +1,1 @@
-ola 
+from constantes import * 
