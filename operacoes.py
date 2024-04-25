@@ -1,5 +1,6 @@
 from constantes import * 
 import random
+from tela import * 
 linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', ' ', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
 
 def cria_mapa(n):
@@ -52,9 +53,9 @@ def aloca_navios(mapa, lista):
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
         y = alocando(mapa, bloco, linha, coluna, orientacao)
-        mapa = y
+        mapa_computador = y
 
-    return mapa
+    return mapa_computador
 
 def foi_derrotado(matriz):
     x = True
@@ -91,10 +92,37 @@ def criar_mapa():
                 linha_jogador[-1] = str(i)
         matriz_adversario.append(linha_adversario)
         matriz_jogador.append(linha_jogador)
+    
 
 
     print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
     print( )
     for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
-        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
+        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog)) 
 
+    matrizes = [matriz_jogador, matriz_adversario]
+    return matrizes  
+
+# Imprimir navios a serem alocados 
+
+def imprimir_navios_restantes(): 
+    print('Navios restantes:')
+    for navio, qtd in frota_escolhida.items():
+        print(f'{qtd} {navio if qtd == 1 else navio + "s"}')
+
+
+imprimir_navios_restantes()
+
+
+while frota_escolhida:
+    for navio, qtd in list(frota_escolhida.items()): 
+        if qtd > 0:
+            print(f'Navio a ser alocado: 1 {navio if qtd == 1 else navio + "s"}')
+            print()
+            frota_escolhida[navio] -= 1
+            if frota_escolhida[navio] == 0:
+                del frota_escolhida[navio]
+            break  
+    imprimir_navios_restantes()
+
+print("Muito bem! Você está pronto para o combate!")

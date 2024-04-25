@@ -1,12 +1,13 @@
 import random
 from constantes import *
-from operacoes import *
+from operacoes import * 
 
 print(' ')
 print('Bem-vindo ao INSPER - Batalha Naval')
 print(' ')
 print('Iniciando o jogo!')
 print(' ')
+
 
 lista_paises = []
 for pais in PAISES.keys():
@@ -45,12 +46,12 @@ for numero, pais in novo_dicionario.items():
             frota_escolhida[navio] = qtd
         break 
 
-#cria o mapa do adversário e do jogador
+
 
 
 print('')
 print(f'Você irá disputar com a frota do país {pais_escolhido}!' ) 
-print('Os navios disponíveis para combate são: ', end='')
+print('Os navios disponíveis para combate são: ', end='') 
 
 for i, (navio, qtd) in enumerate(frota_escolhida.items()):
     nome_navio = navio.capitalize() 
@@ -61,25 +62,22 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
 
 print('\nSe prepare para alocá-los!') 
 
-
-def imprimir_navios_restantes(): 
-    print('Navios restantes:')
-    for navio, qtd in frota_escolhida.items():
-        print(f'{qtd} {navio if qtd == 1 else navio + "s"}')
-
-
-imprimir_navios_restantes()
-
-
-while frota_escolhida:
+mapas = criar_mapa()
+mapa_usuario = mapas[0]
+while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
-        if qtd > 0:
-            print(f'Navio a ser alocado: 1 {navio if qtd == 1 else navio + "s"}')
-            print()
-            frota_escolhida[navio] -= 1
-            if frota_escolhida[navio] == 0:
-                del frota_escolhida[navio]
-            break  
-    imprimir_navios_restantes()
+        tamanho_navio = CONFIGURACAO[navio] 
+        if qtd > 0: 
+           print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
+           print() 
+           coluna = input('Em qual coluna deseja alocar? ')
+           linha = int(input('Em qual linha deseja alocar? '))
+           orientacao = str(input('Escolha a orientação do navio (h/v): ')) 
 
-print("Muito bem! Você está pronto para o combate!")
+           x = alocando(mapa_usuario, tamanho_navio, linha, coluna, orientacao)
+           frota_escolhida[navio] -= 1
+           if frota_escolhida[navio] == 0: 
+               del frota_escolhida[navio]
+           break 
+
+    
