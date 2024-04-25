@@ -81,3 +81,4 @@ while frota_escolhida:
            break 
 
     
+#precisamos criar uma funcao que cria um mapa incial e outra funcao para alocar os navios (dica do leo)
