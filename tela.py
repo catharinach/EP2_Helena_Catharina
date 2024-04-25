@@ -31,6 +31,7 @@ for numero, pais in novo_dicionario.items():
             n_navio = navio.capitalize()
             print(f'    {n_navio}: {qtd}')
 
+print('')
 x = int(input('Qual o número da nação da sua frota? ')) 
 while x not in novo_dicionario:
     print('Frota não encontrada... Escolha uma das nações disponíveis!') 
@@ -44,8 +45,10 @@ for numero, pais in novo_dicionario.items():
             frota_escolhida[navio] = qtd
         break 
 
-criar_mapa()
+#cria o mapa do adversário e do jogador
 
+
+print('')
 print(f'Você irá disputar com a frota do país {pais_escolhido}!' ) 
 print('Os navios disponíveis para combate são: ', end='')
 
