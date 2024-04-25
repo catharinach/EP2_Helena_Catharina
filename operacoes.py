@@ -63,28 +63,7 @@ def foi_derrotado(matriz):
             x = False
     return x    
 
-
-def criar_mapa():
-    matriz = []
-
-    for i in range(12):
-        if i == 0 or i == 11:
-            linha = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
-        else:
-            linha = [' '] * 12
-            if i >= 1 and i <= 9: 
-                nmr = str(i)
-                lista = [' ', nmr]
-                linha[0] = str(i)  
-                linha[-1] = ''.join(lista)
-            elif i == 10: 
-               linha[0] = str(i) 
-               linha[-1] = str(i) 
-        matriz.append(linha)
-
-    for linha in matriz:
-        print(" ".join(linha))
-
+#
 def criar_mapa():
     matriz_adversario = []
     matriz_jogador = []
@@ -119,4 +98,3 @@ def criar_mapa():
     for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
         print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
 
-criar_mapa()
