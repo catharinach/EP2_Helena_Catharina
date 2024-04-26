@@ -62,6 +62,7 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
         print (f'{qtd} {nome_navio}s', end=", " if i <len(frota_escolhida) - 1 else '!')
 
 print('\nSe prepare para alocá-los!') 
+print()
 
 mapas = criar_mapa()
 mapa_usuario = mapas[0]
@@ -71,7 +72,8 @@ while frota_escolhida:
         if qtd > 0: 
            print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
            print() 
-           coluna = input('Em qual coluna deseja alocar? ')
+           c = input('Em qual coluna deseja alocar? ')
+           coluna = c.upper()
            linha = int(input('Em qual linha deseja alocar? '))
            orientacao = str(input('Escolha a orientação do navio (h/v): ')) 
 
