@@ -72,3 +72,6 @@ cores_background = {
     'blue': '\u001b[44m',
     'reset': '\u001b[0m'
 }
+
+print(ALFABETO) 
+print(ALFABETO.index)

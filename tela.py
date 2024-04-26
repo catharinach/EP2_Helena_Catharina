@@ -72,12 +72,14 @@ while frota_escolhida:
         if qtd > 0: 
            print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
            print() 
-           c = input('Em qual coluna deseja alocar? ')
-           coluna = c.upper()
-           linha = int(input('Em qual linha deseja alocar? '))
-           orientacao = str(input('Escolha a orientação do navio (h/v): ')) 
+           fila = int(input(f"Digite o número da fila para o {navio}: "))
+           coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
+           orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
 
-           x = alocando(mapa_usuario, tamanho_navio, linha, coluna, orientacao)
+
+           x = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao) 
+           mapa_usuario = x 
+           print(mapa_usuario)
            frota_escolhida[navio] -= 1
            if frota_escolhida[navio] == 0: 
                del frota_escolhida[navio]

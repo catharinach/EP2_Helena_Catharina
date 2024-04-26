@@ -38,7 +38,9 @@ def alocando(mapa, b, l, c, o):
         for i in range(c, c+b):
             mapa[l][i] = 'N'
 
-    return mapa
+    return mapa 
+
+
 
 def aloca_navios(mapa, lista):
     n = len(mapa)
