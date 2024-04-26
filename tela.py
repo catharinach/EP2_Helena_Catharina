@@ -81,7 +81,16 @@ while frota_escolhida:
                del frota_escolhida[navio]
            break 
 
+def imprimir_navios_restantes(frota_escolhida): 
+    print('Navios restantes:')
+    for navio, qtd in frota_escolhida.items():
+        print(f'{qtd} {navio if qtd == 1 else navio + "s"}')
 
+
+imprimir_navios_restantes()
+
+
+print("Muito bem! Você está pronto para o combate!")
 print()
 print('Se prepare! O jogo vai começar...')
 print()
