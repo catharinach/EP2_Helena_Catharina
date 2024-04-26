@@ -1,6 +1,7 @@
+import time
 import random
 from constantes import *
-from operacoes import * 
+from operacoes import *
 
 print(' ')
 print('Bem-vindo ao INSPER - Batalha Naval')
@@ -80,5 +81,12 @@ while frota_escolhida:
                del frota_escolhida[navio]
            break 
 
-    
-#precisamos criar uma funcao que cria um mapa incial e outra funcao para alocar os navios (dica do leo)
+
+print()
+print('Se prepare! O jogo vai começar...')
+print()
+
+countdown = [5, 4, 3, 2, 1]
+for i in countdown:
+    time.sleep(1)
+    print(i)
