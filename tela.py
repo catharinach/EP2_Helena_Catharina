@@ -87,9 +87,6 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
 print('\nSe prepare para alocá-los!') 
 print()
 
-
-
-
 mapa_usuario, matriz_adversario = criar_mapa()
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
@@ -124,9 +121,6 @@ while frota_escolhida:
         if frota_escolhida[navio] == 0: 
             del frota_escolhida[navio]
         break 
-
-
-
 
 
 print("Muito bem! Você está pronto para o combate!")

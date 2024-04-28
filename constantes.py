@@ -73,5 +73,6 @@ cores_background = {
     'reset': '\u001b[0m'
 }
 
-print(ALFABETO) 
-print(ALFABETO.index)
+x = u"\u001b[32mN \u001b[0m"
+y = u'\u001b[42m \u001b[0m'
+print(y)

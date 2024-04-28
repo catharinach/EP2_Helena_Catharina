@@ -31,14 +31,13 @@ def posicao_suporta (mapa, blocos, linha, coluna, orientacao):
 def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
-            mapa[i][c] = 'N'
+            mapa[i][c] = u'\u001b[42m \u001b[0m'
 
     elif o == 'h':
         for i in range(c, c+b):
-            mapa[l][i] = 'N'
+            mapa[l][i] = u'\u001b[42m \u001b[0m'
 
     return mapa 
-
 
 
 def aloca_navios(mapa, lista):
