@@ -9,27 +9,7 @@ print(' ')
 print('Iniciando o jogo!')
 print(' ')
 
-def mapa_formatado(mapa_jogador, mapa_adversario):
-    matriz_jogador = []
-    matriz_adversario = []
-
-    for i in range(12):
-        linha_jogador = []
-        linha_adversario = []
-
-        if i == 0 or i == 11:
-            linha_jogador = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
-            linha_adversario = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
-        else:
-            linha_jogador = mapa_jogador[i]
-            linha_adversario = mapa_adversario[i]
-
-        matriz_jogador.append(linha_jogador)
-        matriz_adversario.append(linha_adversario)
-
-    return matriz_jogador, matriz_adversario
-    
-
+#escolhendo pais aleatorio para o computador
 lista_paises = []
 for pais in PAISES.keys():
     lista_paises.append(pais)
@@ -88,6 +68,7 @@ print('\nSe prepare para alocá-los!')
 print()
 
 mapa_usuario, matriz_adversario = criar_mapa()
+
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
         tamanho_navio = CONFIGURACAO[navio] 
@@ -105,6 +86,7 @@ while frota_escolhida:
                fila = int(input(f"Digite o número da fila para o {navio}: "))
                coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
                orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
+               x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
                print('')
         y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
         
@@ -121,7 +103,6 @@ while frota_escolhida:
         if frota_escolhida[navio] == 0: 
             del frota_escolhida[navio]
         break 
-
 
 print("Muito bem! Você está pronto para o combate!")
 print()

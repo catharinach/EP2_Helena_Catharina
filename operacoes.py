@@ -39,6 +39,17 @@ def alocando(mapa, b, l, c, o):
 
     return mapa 
 
+def alocando2(mapa, b, l, c, o):
+    if o == 'v':
+        for i in range(l, l+b):
+            mapa[i][c] = u'\u001b[31m \u001b[0m'
+
+    elif o == 'h':
+        for i in range(c, c+b):
+            mapa[l][i] = u'\u001b[31m \u001b[0m'
+
+    return mapa 
+
 
 def aloca_navios(mapa, lista):
     n = len(mapa)
@@ -52,9 +63,7 @@ def aloca_navios(mapa, lista):
             coluna = random.randint(0, n-1)
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
-        y = alocando(mapa, bloco, linha, coluna, orientacao)
-        mapa_computador = y
-
+        mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
     return mapa_computador
 
 def foi_derrotado(matriz):
@@ -114,38 +123,22 @@ def imprimir_navios_restantes(frota_escolhida):
 
 print("Muito bem! Você está pronto para o combate!")
 
-#tentativa de criar uma função que devolve o mapa do jogador, formatado, com os navios alocados
-def mapa_formatado(novo_mapa_j):
+def mapa_formatado(mapa_jogador, mapa_adversario):
+    matriz_jogador = []
     matriz_adversario = []
-    matriz_jogador = [novo_mapa_j]
 
     for i in range(12):
-        linha_adversario = []
         linha_jogador = []
+        linha_adversario = []
+
         if i == 0 or i == 11:
-            linha_adversario = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
             linha_jogador = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
+            linha_adversario = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
         else:
-            linha_adversario = [' '] * 12
-            if i >= 1 and i <= 9:
-                nmr = str(i)
-                lista = [' ', nmr]
-                linha_adversario[0] = str(i)
-                linha_adversario[-1] = ''.join(lista)
-            elif i == 10:
-                linha_adversario[0] = str(i)
-                linha_jogador[0] = str(i)
-                linha_adversario[-1] = str(i)
-                linha_jogador[-1] = str(i)
-        matriz_adversario.append(linha_adversario)
+            linha_jogador = mapa_jogador[i]
+            linha_adversario = mapa_adversario[i]
+
         matriz_jogador.append(linha_jogador)
-    
+        matriz_adversario.append(linha_adversario)
 
-
-    print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
-    print( )
-    for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
-        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog)) 
-
-    matrizes = [matriz_jogador, matriz_adversario]
-    return matrizes
+    return matriz_jogador, matriz_adversario
