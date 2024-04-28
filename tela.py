@@ -83,6 +83,7 @@ while frota_escolhida:
                fila = int(input(f"Digite o número da fila para o {navio}: "))
                coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
                orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
+               x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
                
            y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
 
