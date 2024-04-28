@@ -29,7 +29,6 @@ def posicao_suporta (mapa, blocos, linha, coluna, orientacao):
     return True 
 
 def alocando(mapa, b, l, c, o):
-    y = len(mapa)
     if o == 'v':
         for i in range(l, l+b):
             mapa[i][c] = 'N'
@@ -115,3 +114,39 @@ def imprimir_navios_restantes(frota_escolhida):
     imprimir_navios_restantes(frota_escolhida)
 
 print("Muito bem! Você está pronto para o combate!")
+
+#tentativa de criar uma função que devolve o mapa do jogador, formatado, com os navios alocados
+def mapa_formatado(novo_mapa_j):
+    matriz_adversario = []
+    matriz_jogador = [novo_mapa_j]
+
+    for i in range(12):
+        linha_adversario = []
+        linha_jogador = []
+        if i == 0 or i == 11:
+            linha_adversario = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
+            linha_jogador = [' '] + [letra for letra in ALFABETO[:10]] + [' ']
+        else:
+            linha_adversario = [' '] * 12
+            if i >= 1 and i <= 9:
+                nmr = str(i)
+                lista = [' ', nmr]
+                linha_adversario[0] = str(i)
+                linha_adversario[-1] = ''.join(lista)
+            elif i == 10:
+                linha_adversario[0] = str(i)
+                linha_jogador[0] = str(i)
+                linha_adversario[-1] = str(i)
+                linha_jogador[-1] = str(i)
+        matriz_adversario.append(linha_adversario)
+        matriz_jogador.append(linha_jogador)
+    
+
+
+    print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+    print( )
+    for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
+        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog)) 
+
+    matrizes = [matriz_jogador, matriz_adversario]
+    return matrizes
