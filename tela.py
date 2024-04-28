@@ -74,11 +74,19 @@ while frota_escolhida:
            print() 
            fila = int(input(f"Digite o número da fila para o {navio}: "))
            coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
-           orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
+           orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
 
+           x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao) 
+           
+           while x == False:
+               print('Não é possível colocar um navio nessa posição... Tente novamente.')
+               fila = int(input(f"Digite o número da fila para o {navio}: "))
+               coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
+               orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
+               
+           y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
 
-           x = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao) 
-           mapa_usuario = x 
+           mapa_usuario = y 
            print(mapa_usuario)
            frota_escolhida[navio] -= 1
            if frota_escolhida[navio] == 0: 
