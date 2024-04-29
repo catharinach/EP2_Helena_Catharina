@@ -31,22 +31,22 @@ def posicao_suporta (mapa, blocos, linha, coluna, orientacao):
 def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[42m \u001b[0m'
+            mapa[i][c] = u'\u001b[35mN\u001b[0m'
 
     elif o == 'h':
         for i in range(c, c+b):
-            mapa[l][i] = u'\u001b[42m \u001b[0m'
+            mapa[l][i] = u'\u001b[35mN\u001b[0m'
 
     return mapa 
 
 def alocando2(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[31m \u001b[0m'
+            mapa[i][c] = u'\u001b[35mN\u001b[0m'
 
     elif o == 'h':
         for i in range(c, c+b):
-            mapa[l][i] = u'\u001b[31m \u001b[0m'
+            mapa[l][i] = u'\u001b[35mN\u001b[0m'
 
     return mapa 
 
@@ -106,7 +106,7 @@ def criar_mapa():
     print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
     print( )
     for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
-        print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog)) 
+        print(" ".join(linha_adv).ljust(30), "", " ".join(linha_jog)) 
 
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  

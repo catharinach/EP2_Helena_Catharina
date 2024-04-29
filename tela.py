@@ -69,6 +69,15 @@ print()
 
 mapa_usuario, matriz_adversario = criar_mapa()
 
+lista = []
+for pais, info in PAISES.items():
+    if pais == pais_escolhido:
+        for navio, qtd in info.items():
+            for i in range(qtd):
+                lista.append(CONFIGURACAO[navio])
+
+mapa_computador = aloca_navios(matriz_adversario, lista)
+
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
         tamanho_navio = CONFIGURACAO[navio] 
@@ -90,13 +99,13 @@ while frota_escolhida:
                print('')
         y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
         
-        mapa_usuario, matriz_adversario = mapa_formatado(y, matriz_adversario)
+        mapa_usuario, mapa_computador = mapa_formatado(y, mapa_computador)
 
         print ('')
 
         print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
         print()
-        for linha_adv, linha_jog in zip(matriz_adversario, mapa_usuario):
+        for linha_adv, linha_jog in zip(mapa_computador, mapa_usuario):
             print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
 
         frota_escolhida[navio] -= 1
