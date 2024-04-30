@@ -8,10 +8,11 @@ def cria_mapa(n):
     lista2 = [lista]*n
     return lista2
 
-def posicao_suporta (mapa, blocos, linha, coluna, orientacao): 
+def posicao_suporta(mapa, blocos, linha, coluna, orientacao): 
     tamanho = len(mapa)
-    if mapa[linha][coluna] != ' ': 
-        return False 
+    
+    if linha < 1 or coluna < 1 or linha >= tamanho or coluna >= tamanho:
+        return False
     
     if orientacao == 'v': 
         if linha + blocos > tamanho:
@@ -26,16 +27,17 @@ def posicao_suporta (mapa, blocos, linha, coluna, orientacao):
             if mapa[linha][j] != ' ': 
                 return False 
             
-    return True 
 
 def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[35mN\u001b[0m'
+            if i >= 1:  
+                mapa[i][c] = u'\u001b[35mN\u001b[0m'
 
     elif o == 'h':
-        for j in range(c, c+b):
-            mapa[l][j] = u'\u001b[35mN\u001b[0m'
+        if l >= 1: 
+            for j in range(c, c+b):
+                mapa[l][j] = u'\u001b[35mN\u001b[0m'
 
     return mapa 
 
@@ -56,7 +58,7 @@ def aloca_navios(mapa, lista):
     for bloco in lista:
         x = False
         while not x:
-            linha = random.randint(1, n - 1)
+            linha = random.randint(1, n - 2)  # Evita a linha 0 e a última linha
             coluna = random.randint(1, n - 1)
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
@@ -176,4 +178,5 @@ def print_maps(matriz_adversario, mapa_usuario):
         linha_adv_str = " ".join(linha_adv).ljust(30)
         linha_jog_str = " ".join(linha_jog).ljust(40)
         print(linha_adv_str, "   ", linha_jog_str)
+
 

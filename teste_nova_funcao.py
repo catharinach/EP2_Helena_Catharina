@@ -270,3 +270,25 @@ def criar_mapa():
 
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
+
+def alocando(mapa, b, l, c, o):
+    if o == 'v':
+        for i in range(l, l+b):
+            mapa[i][c] = u'\u001b[35mN\u001b[0m'
+
+    elif o == 'h':
+        for j in range(c, c+b):
+            mapa[l][j] = u'\u001b[35mN\u001b[0m'
+
+    return mapa 
+
+def alocando2(mapa, b, l, c, o):
+    if o == 'v':
+        for i in range(l, l+b):
+            mapa[i][c] = u'\u001b[35mN\u001b[0m'
+
+    elif o == 'h':
+        for j in range(c, c+b):
+            mapa[l][j] = u'\u001b[35mN\u001b[0m'
+
+    return mapa 

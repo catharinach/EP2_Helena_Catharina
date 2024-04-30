@@ -80,7 +80,7 @@ for pais, info in PAISES.items():
 
 mapa_computador = aloca_navios(matriz_adversario, lista)
 
-while frota_escolhida: 
+while len(frota_escolhida) > 0: 
     for navio, qtd in list(frota_escolhida.items()): 
         tamanho_navio = CONFIGURACAO[navio] 
         if qtd > 0: 
