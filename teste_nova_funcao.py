@@ -137,8 +137,8 @@ def criar_mapa2():
     matriz_jogador.insert(11, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
     print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
     print( )
-    for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
-        print(" ".join(linha_adv).ljust(30), " ", " ".join(linha_jog)) 
+    for linha1, linha2 in zip(matriz_jogador, matriz_adversario):
+        print("{:<25} {:<25}".format(" ".join(linha1), " ".join(linha2))) 
 
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
