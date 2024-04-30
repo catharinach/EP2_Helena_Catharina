@@ -78,7 +78,11 @@ for pais, info in PAISES.items():
             for i in range(qtd):
                 lista.append(CONFIGURACAO[navio])
 
+mapa_u, mapa_adv = criar_mapa()
+mapa_computador = aloca_navios(mapa_adv, lista)
 mapa_computador = aloca_navios(matriz_adversario, lista)
+
+print()
 
 while len(frota_escolhida) > 0: 
     navio, qtd = list(frota_escolhida.items())[0]  # Pegar o primeiro navio da frota
@@ -111,10 +115,8 @@ while len(frota_escolhida) > 0:
     if frota_escolhida[navio] == 0: 
         del frota_escolhida[navio]
 
-print("Muito bem! Você está pronto para o combate!")
-print()
-print('Se prepare! O jogo vai começar...')
-print()
+    print("Muito bem! Você está pronto para o combate!")
+
 
 countdown = [5, 4, 3, 2, 1]
 for i in countdown:
