@@ -1,3 +1,4 @@
+import time
 from constantes import *
 from operacoes import *
 import random
