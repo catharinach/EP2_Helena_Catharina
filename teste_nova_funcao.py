@@ -21,10 +21,11 @@ def aloca_navios2(mapa, lista):
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
         mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
+
     return mapa_computador
 
 
-def posicao_suporta (mapa, blocos, linha, coluna, orientacao): 
+def posicao_suporta(mapa, blocos, linha, coluna, orientacao): 
     tamanho = len(mapa)
     if mapa[linha][coluna] != ' ': 
         return False 
@@ -135,7 +136,8 @@ def criar_mapa2():
     matriz_jogador.insert(0, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
     matriz_adversario.insert(11, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
     matriz_jogador.insert(11, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
-    print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+    
+    print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
     print( )
     for linha1, linha2 in zip(matriz_jogador, matriz_adversario):
         print("{:<25} {:<25}".format(" ".join(linha1), " ".join(linha2))) 
@@ -149,13 +151,38 @@ mapa_computador = aloca_navios2(mapa_adv, lista)
 
 print()
 
+def aloca_navios3(mapa):
+    for navio, qtd in list(frota_escolhida.items()):
+        for _ in range(qtd):
+            print(f'Alocando navio {navio}:')
+            fila = int(input("Digite o número da fila (1-10): "))
+            coluna = ALFABETO.index(input("Digite a letra da coluna (A-J): ").upper()) + 1
+            orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
+
+            x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
+            while x == False:
+                print('Não é possível colocar um navio nessa posição. Tente novamente.')
+                fila = int(input("Digite o número da fila (1-10): "))
+                coluna = ALFABETO.index(input("Digite a letra da coluna (A-J): ").upper()) + 1
+                orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
+                x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
+
+            mapa_u = alocando2(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
+
+            print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+            print()
+            for linha_adv, linha_jog in zip(mapa_adv, mapa_u):
+                print(" ".join(linha_adv).ljust(30), "  ", " ".join(linha_jog))
+
+    return mapa_u
+
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
         tamanho_navio = CONFIGURACAO[navio] 
         if qtd > 0: 
            print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
            print() 
-           z = aloca_navios3(mapa_u, lista)
+           z = aloca_navios3(mapa_u)
            #fila = int(input(f"Digite o número da fila para o {navio}: "))
            #coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
            #orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
@@ -183,31 +210,6 @@ while frota_escolhida:
             del frota_escolhida[navio]
         break 
 
-#while frota_escolhida:
-    def aloca_navios3(mapa, lista):
-        for navio, qtd in lista.items():
-            for _ in range(qtd):
-                print(f'Alocando navio {navio}:')
-                fila = int(input("Digite o número da fila (1-10): "))
-                coluna = ALFABETO.index(input("Digite a letra da coluna (A-J): ").upper()) + 1
-                orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
-
-                x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
-                while x == False:
-                    print('Não é possível colocar um navio nessa posição. Tente novamente.')
-                    fila = int(input("Digite o número da fila (1-10): "))
-                    coluna = ALFABETO.index(input("Digite a letra da coluna (A-J): ").upper()) + 1
-                    orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
-                    x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
-
-                mapa = alocando2(mapa_u, CONFIGURACAO[navio], fila, coluna, orientacao)
-
-                print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
-                print()
-                for linha_adv, linha_jog in zip(mapa_adv, mapa):
-                    print(" ".join(linha_adv).ljust(30), "  ", " ".join(linha_jog))
-
-        return mapa
 
 def mapa_formatado(mapa_jogador, mapa_adversario):
     matriz_jogador = []
@@ -296,26 +298,3 @@ def criar_mapa():
 
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
-
-def alocando(mapa, b, l, c, o):
-    if o == 'v':
-        for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[35mN\u001b[0m'
-
-    elif o == 'h':
-        for j in range(c, c+b):
-            mapa[l][j] = u'\u001b[35mN\u001b[0m'
-
-    return mapa 
-
-def alocando2(mapa, b, l, c, o):
-    if o == 'v':
-        for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[35mN\u001b[0m'
-
-    elif o == 'h':
-        for j in range(c, c+b):
-            mapa[l][j] = u'\u001b[35mN\u001b[0m'
-
-    return mapa 
-

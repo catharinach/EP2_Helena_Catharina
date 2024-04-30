@@ -44,11 +44,11 @@ def alocando(mapa, b, l, c, o):
 def alocando2(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
-            mapa[i][c] = u'\u001b[35mN\u001b[0m'
+            mapa[i][c] = 'N'
 
     elif o == 'h':
         for j in range(c, c+b):
-            mapa[l][j] = u'\u001b[35mN\u001b[0m'
+            mapa[l][j] = 'N'
 
     return mapa 
 
