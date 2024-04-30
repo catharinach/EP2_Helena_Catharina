@@ -168,7 +168,7 @@ while True:
         break
 
 jogar_dnv = input('Você gostaria de jogar de novo (S para sim, N para não)? ')
-if jogar_dnv == 'S':
+if jogar_dnv.upper() == 'S':
     jogo()
 else:
     print('Até mais! :)')

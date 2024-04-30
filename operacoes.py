@@ -289,8 +289,8 @@ def criar_mapa():
 
 def atirar(mapa):
     print(' ')
-    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) + 1
-    coluna = ALFABETO.index(input("Em qual coluna você deseja atirar? (A-J): ").upper()) + 1 
+    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) 
+    coluna = ALFABETO.index(input("Em qual coluna você deseja atirar? (A-J): ").upper()) + 1
     
     if mapa[linha][coluna] == 'N':
         print("Você acertou um navio!")
