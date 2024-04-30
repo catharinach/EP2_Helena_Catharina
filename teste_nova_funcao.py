@@ -23,6 +23,7 @@ def aloca_navios2(mapa, lista):
         mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
     return mapa_computador
 
+
 def posicao_suporta (mapa, blocos, linha, coluna, orientacao): 
     tamanho = len(mapa)
     if mapa[linha][coluna] != ' ': 
@@ -147,19 +148,7 @@ mapa_u, mapa_adv = criar_mapa2()
 
 mapa_computador = aloca_navios2(mapa_adv, lista)
 
-def mapa_formatado2(mapa_jogador, mapa_adversario):
-    matriz_jogador = []*10
-    matriz_adversario = []*10
-
-    for i in range(1, 10):
-        linha_jogador = mapa_jogador[i]
-        linha_adversario = mapa_adversario[i]
-
-        matriz_jogador[i] = linha_jogador
-        matriz_adversario[i] = linha_adversario
-
-    return matriz_jogador, matriz_adversario
-
+print()
 
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
@@ -182,14 +171,12 @@ while frota_escolhida:
                print('')
         y = alocando(mapa_u, tamanho_navio, fila, coluna, orientacao)
         
-        mapa_u, mapa_adv = mapa_formatado2(y, mapa_computador)
-
         print ('')
 
         print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
         print()
-        for linha_adv, linha_jog in zip(mapa_adv, mapa_u):
-            print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
+        for linha_adv, linha_jog in zip(mapa_adv, y):
+            print(" ".join(linha_adv).ljust(30), "  ", " ".join(linha_jog))
 
         frota_escolhida[navio] -= 1
         if frota_escolhida[navio] == 0: 
