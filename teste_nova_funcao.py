@@ -143,7 +143,6 @@ def criar_mapa2():
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
 
-
 mapa_u, mapa_adv = criar_mapa2()
 
 mapa_computador = aloca_navios2(mapa_adv, lista)
