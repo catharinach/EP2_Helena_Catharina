@@ -1,13 +1,47 @@
-import time
-import random
 from constantes import *
 from operacoes import *
+import random
 
 print(' ')
 print('Bem-vindo ao INSPER - Batalha Naval')
 print(' ')
 print('Iniciando o jogo!')
 print(' ')
+
+def aloca_navios2(mapa, lista):
+    n = 10
+    linha = random.randint(0, n-1)
+    coluna = random.randint(0, n-1)
+    orientacao = random.choice(['h', 'v'])
+    for bloco in lista:
+        x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
+        while x == False:
+            linha = random.randint(0, n-1)
+            coluna = random.randint(0, n-1)
+            orientacao = random.choice(['h', 'v'])
+            x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
+        mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
+    return mapa_computador
+
+def posicao_suporta (mapa, blocos, linha, coluna, orientacao): 
+    tamanho = len(mapa)
+    if mapa[linha][coluna] != ' ': 
+        return False 
+    
+    if orientacao == 'v': 
+        if linha + blocos > tamanho:
+            return False 
+        for i in range(linha, linha + blocos): 
+            if mapa[i][coluna] != ' ': 
+                return False 
+    elif orientacao == 'h': 
+        if coluna + blocos > tamanho: 
+            return False 
+        for j in range(coluna,  coluna + blocos): 
+            if mapa[linha][j] != ' ': 
+                return False 
+            
+    return True 
 
 #escolhendo pais aleatorio para o computador
 lista_paises = []
@@ -67,8 +101,6 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
 print('\nSe prepare para alocá-los!') 
 print()
 
-mapa_usuario, matriz_adversario = criar_mapa()
-
 lista = []
 for pais, info in PAISES.items():
     if pais == pais_escolhido:
@@ -76,7 +108,58 @@ for pais, info in PAISES.items():
             for i in range(qtd):
                 lista.append(CONFIGURACAO[navio])
 
-mapa_computador = aloca_navios(matriz_adversario, lista)
+def criar_mapa2():
+    matriz_adversario = []
+    matriz_jogador = []
+
+    for i in range(1, 11):
+        linha_adversario = [' '] * 11
+        linha_jogador = [' '] * 11
+        if i >= 1 and i <= 9:
+            nmr = str(i)
+            lista = [' ', nmr]
+            linha_adversario[0] = str(i)
+            linha_jogador[0] = str(i)
+            linha_adversario[-1] = ''.join(lista)
+            linha_jogador[-1] = ''.join(lista)
+        elif i == 10:
+            linha_adversario[0] = str(i)
+            linha_jogador[0] = str(i)
+            linha_adversario[-1] = str(i)
+            linha_jogador[-1] = str(i)
+        matriz_adversario.append(linha_adversario)
+        matriz_jogador.append(linha_jogador)
+    
+    matriz_adversario.insert(0, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
+    matriz_jogador.insert(0, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
+    matriz_adversario.insert(11, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
+    matriz_jogador.insert(11, [' '] + [letra for letra in ALFABETO[:10]] + [' '])
+    print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+    print( )
+    for linha_adv, linha_jog in zip(matriz_adversario, matriz_jogador):
+        print(" ".join(linha_adv).ljust(30), " ", " ".join(linha_jog)) 
+
+    matrizes = [matriz_jogador, matriz_adversario]
+    return matrizes  
+
+
+mapa_u, mapa_adv = criar_mapa2()
+
+mapa_computador = aloca_navios2(mapa_adv, lista)
+
+def mapa_formatado2(mapa_jogador, mapa_adversario):
+    matriz_jogador = []*10
+    matriz_adversario = []*10
+
+    for i in range(1, 10):
+        linha_jogador = mapa_jogador[i]
+        linha_adversario = mapa_adversario[i]
+
+        matriz_jogador[i] = linha_jogador
+        matriz_adversario[i] = linha_adversario
+
+    return matriz_jogador, matriz_adversario
+
 
 while frota_escolhida: 
     for navio, qtd in list(frota_escolhida.items()): 
@@ -88,38 +171,28 @@ while frota_escolhida:
            coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
            orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
 
-           x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao) 
+           x = posicao_suporta(mapa_u, tamanho_navio, fila, coluna, orientacao) 
            
            while x == False:
                print('Não é possível colocar um navio nessa posição... Tente novamente.')
                fila = int(input(f"Digite o número da fila para o {navio}: "))
                coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
                orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
-               x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
+               x = posicao_suporta(mapa_u, tamanho_navio, fila, coluna, orientacao)
                print('')
-        y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
+        y = alocando(mapa_u, tamanho_navio, fila, coluna, orientacao)
         
-        mapa_usuario, matriz_adversario = mapa_formatado(y, mapa_computador)
+        mapa_u, mapa_adv = mapa_formatado2(y, mapa_computador)
 
         print ('')
 
         print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
         print()
-        for linha_adv, linha_jog in zip(matriz_adversario, mapa_usuario):
+        for linha_adv, linha_jog in zip(mapa_adv, mapa_u):
             print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
 
         frota_escolhida[navio] -= 1
         if frota_escolhida[navio] == 0: 
             del frota_escolhida[navio]
         break 
-
-print("Muito bem! Você está pronto para o combate!")
-print()
-print('Se prepare! O jogo vai começar...')
-print()
-
-countdown = [5, 4, 3, 2, 1]
-for i in countdown:
-    time.sleep(1)
-    print(i)
 
