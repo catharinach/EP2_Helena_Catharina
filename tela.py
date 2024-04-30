@@ -68,6 +68,8 @@ print('\nSe prepare para alocá-los!')
 print()
 
 mapa_usuario, matriz_adversario = criar_mapa()
+print_maps(matriz_adversario, mapa_usuario)
+
 
 lista = []
 for pais, info in PAISES.items():
@@ -102,11 +104,7 @@ while frota_escolhida:
         mapa_usuario, matriz_adversario = mapa_formatado(y, mapa_computador)
 
         print ('')
-
-        print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
-        print()
-        for linha_adv, linha_jog in zip(matriz_adversario, mapa_usuario):
-            print(" ".join(linha_adv).ljust(30), "   ", " ".join(linha_jog))
+        print_maps(matriz_adversario, mapa_usuario)
 
         frota_escolhida[navio] -= 1
         if frota_escolhida[navio] == 0: 
