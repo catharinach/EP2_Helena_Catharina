@@ -34,8 +34,8 @@ def alocando(mapa, b, l, c, o):
             mapa[i][c] = u'\u001b[35mN\u001b[0m'
 
     elif o == 'h':
-        for i in range(c, c+b):
-            mapa[l][i] = u'\u001b[35mN\u001b[0m'
+        for j in range(c, c+b):
+            mapa[l][j] = u'\u001b[35mN\u001b[0m'
 
     return mapa 
 
@@ -45,26 +45,23 @@ def alocando2(mapa, b, l, c, o):
             mapa[i][c] = u'\u001b[35mN\u001b[0m'
 
     elif o == 'h':
-        for i in range(c, c+b):
-            mapa[l][i] = u'\u001b[35mN\u001b[0m'
+        for j in range(c, c+b):
+            mapa[l][j] = u'\u001b[35mN\u001b[0m'
 
     return mapa 
 
 
 def aloca_navios(mapa, lista):
     n = len(mapa)
-    linha = random.randint(0, n-1)
-    coluna = random.randint(0, n-1)
-    orientacao = random.choice(['h', 'v'])
     for bloco in lista:
-        x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
-        while x == False:
-            linha = random.randint(0, n-1)
-            coluna = random.randint(0, n-1)
+        x = False
+        while not x:
+            linha = random.randint(1, n - 1)
+            coluna = random.randint(1, n - 1)
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
-        mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
-    return mapa_computador
+        mapa = alocando(mapa, bloco, linha, coluna, orientacao)
+    return mapa
 
 def foi_derrotado(matriz):
     x = True
@@ -111,6 +108,7 @@ def criar_mapa():
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
 
+
 # Imprimir navios a serem alocados 
 
 def imprimir_navios_restantes(frota_escolhida): 
@@ -141,4 +139,5 @@ def mapa_formatado(mapa_jogador, mapa_adversario):
         matriz_jogador.append(linha_jogador)
         matriz_adversario.append(linha_adversario)
 
-    return matriz_jogador, matriz_adversario
+    return matriz_jogador, matriz_adversario 
+

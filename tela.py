@@ -113,6 +113,7 @@ while frota_escolhida:
             del frota_escolhida[navio]
         break 
 
+
 print("Muito bem! Você está pronto para o combate!")
 print()
 print('Se prepare! O jogo vai começar...')
