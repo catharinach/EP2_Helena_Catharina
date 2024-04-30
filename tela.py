@@ -83,16 +83,38 @@ mapa_computador = aloca_navios(mapa_adv, lista)
 mapa_computador = aloca_navios(matriz_adversario, lista)
 
 print()
-
+orientacoes = ['v', 'h']
 while len(frota_escolhida) > 0: 
     navio, qtd = list(frota_escolhida.items())[0]  # Pegar o primeiro navio da frota
     tamanho_navio = CONFIGURACAO[navio]
     
     print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
     print() 
-    fila = int(input(f"Digite o número da fila para o {navio}: "))
-    coluna = ALFABETO.index(input(f"Digite a letra da coluna para o {navio} (A-J): ").upper()) + 1
-    orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ") 
+    fila = input(f"Digite o número da fila para o {navio}: ")
+    if fila in linhas: 
+        fila = int(fila)
+    else: 
+        while fila not in linhas: 
+            print ('Digite uma fileira válida (número de 1 a 10)!')
+            fila = (input(f"Digite o número da fila para o {navio}: "))
+            if fila in linhas: 
+                fila = int(fila)
+                break 
+    coluna = str(input(f"Digite a letra da coluna para o {navio} (A-J): ")).upper() 
+    if coluna in ALFABETO: 
+        coluna = ALFABETO.index(coluna) + 1 
+    else: 
+        while coluna not in ALFABETO: 
+            print ('Digite uma letra válida (de A a J)!')
+            coluna = input(f"Digite a letra da coluna para o {navio} (A-J): ").upper() 
+            if coluna in ALFABETO: 
+                coluna = ALFABETO.index(coluna) + 1 
+                break
+    
+    orientacao = str(input("Digite 'h' para horizontal ou 'v' para vertical: ")).lower()
+    while orientacao not in orientacoes: 
+        print ('Digite v para vertical e h para horizontal!')
+        orientacao = str(input("Digite 'h' para horizontal ou 'v' para vertical: ")).lower() 
 
     x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao) 
 
@@ -104,7 +126,7 @@ while len(frota_escolhida) > 0:
         x = posicao_suporta(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
         print('')
     
-    y = alocando(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
+    y = alocando2(mapa_usuario, tamanho_navio, fila, coluna, orientacao)
 
     mapa_usuario, matriz_adversario = mapa_formatado(y, mapa_computador)
 
@@ -115,11 +137,32 @@ while len(frota_escolhida) > 0:
     if frota_escolhida[navio] == 0: 
         del frota_escolhida[navio]
 
-    print("Muito bem! Você está pronto para o combate!")
+print("Muito bem! Você está pronto para o combate!")
 
 
 countdown = [5, 4, 3, 2, 1]
 for i in countdown:
     time.sleep(1)
-    print(i)
+    print(i) 
+
+print('Começou!') 
+while True:
+    print()
+    print("\nSua vez de atirar:")
+    print()
+    print_maps(mapa_computador, mapa_usuario)
+    atirar(mapa_computador)
+    
+    navios_restantes = sum(row.count('N') for row in mapa_computador)
+    if navios_restantes == 0:
+        print("Parabéns! Você destruiu todos os navios do adversário!")
+        break
+
+    print("\nVez do computador:")
+    atirar_computador(mapa_usuario)
+    
+    navios_restantes = sum(row.count('N') for row in mapa_usuario)
+    if navios_restantes == 0:
+        print("O computador destruiu todos os seus navios! Você perdeu!")
+        break
 

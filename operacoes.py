@@ -44,16 +44,17 @@ def aloca_navios2(mapa, lista):
 
     return mapa_computador
 
+# Tentativa de usar as cores nos mapas 
 def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
             if i >= 1:  
-                mapa[i][c] = u'\u001b[35mN\u001b[0m'
+                mapa[i][c] = u'\u001b[35m \u001b[0m'
 
     elif o == 'h':
         if l >= 1: 
             for j in range(c, c+b):
-                mapa[l][j] = u'\u001b[35mN\u001b[0m'
+                mapa[l][j] = u'\u001b[35m \u001b[0m'
 
     return mapa 
 
@@ -78,7 +79,7 @@ def aloca_navios(mapa, lista):
             coluna = random.randint(1, n - 1)
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
-        mapa = alocando(mapa, bloco, linha, coluna, orientacao)
+        mapa = alocando2(mapa, bloco, linha, coluna, orientacao)
     return mapa
 
 
@@ -285,3 +286,27 @@ def criar_mapa():
 
     matrizes = [matriz_jogador, matriz_adversario]
     return matrizes  
+
+def atirar(mapa):
+    print(' ')
+    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) + 1 
+    coluna = ALFABETO.index(input("Em qual coluna você deseja atirar? (A-J): ").upper()) + 1 
+    
+    if mapa[linha][coluna] == 'N':
+        print("Você acertou um navio!")
+        mapa[linha][coluna] = 'X'
+    else:
+        print("Tiro na água!")
+        mapa[linha][coluna] = 'A'
+
+def atirar_computador(mapa):
+    linha = random.randint(1, 10)
+    coluna = random.randint(1, 10)
+    
+    if mapa[linha][coluna] == 'N':
+        print("O computador acertou um de seus navios!")
+        mapa[linha][coluna] = 'X'
+    else:
+        print("O computador atirou na água!")
+        mapa[linha][coluna] = 'A'
+
