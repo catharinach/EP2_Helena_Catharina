@@ -2,6 +2,7 @@ import time
 import random
 from constantes import *
 from operacoes import *
+from main import *
 
 print(' ')
 print('Bem-vindo ao INSPER - Batalha Naval')
@@ -67,8 +68,8 @@ for i, (navio, qtd) in enumerate(frota_escolhida.items()):
 print('\nSe prepare para alocá-los!') 
 print()
 
-mapa_usuario, matriz_adversario = criar_mapa()
-print_maps(matriz_adversario, mapa_usuario)
+mapa_usuario, mapa_adv = criar_mapa()
+#print_maps(matriz_adversario, mapa_usuario)
 
 
 lista = []
@@ -78,9 +79,9 @@ for pais, info in PAISES.items():
             for i in range(qtd):
                 lista.append(CONFIGURACAO[navio])
 
-mapa_u, mapa_adv = criar_mapa()
+#mapa_u, mapa_adv = criar_mapa()
 mapa_computador = aloca_navios(mapa_adv, lista)
-mapa_computador = aloca_navios(matriz_adversario, lista)
+#mapa_computador = aloca_navios(matriz_adversario, lista)
 
 print()
 orientacoes = ['v', 'h']
@@ -166,3 +167,8 @@ while True:
         print("O computador destruiu todos os seus navios! Você perdeu!")
         break
 
+jogar_dnv = input('Você gostaria de jogar de novo (S para sim, N para não)? ')
+if jogar_dnv == 'S':
+    jogo()
+else:
+    print('Até mais! :)')

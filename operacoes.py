@@ -289,7 +289,7 @@ def criar_mapa():
 
 def atirar(mapa):
     print(' ')
-    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) + 1 
+    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) + 1
     coluna = ALFABETO.index(input("Em qual coluna você deseja atirar? (A-J): ").upper()) + 1 
     
     if mapa[linha][coluna] == 'N':
@@ -310,3 +310,7 @@ def atirar_computador(mapa):
         print("O computador atirou na água!")
         mapa[linha][coluna] = 'A'
 
+def imprimir_navios_restantes(frota_escolhida): 
+        print('Navios restantes:')
+        for navio, qtd in frota_escolhida.items():
+            print(f'{qtd} {navio if qtd == 1 else navio + "s"}')
