@@ -85,7 +85,7 @@ mapa_computador = aloca_navios(matriz_adversario, lista)
 print()
 orientacoes = ['v', 'h']
 while len(frota_escolhida) > 0: 
-    navio, qtd = list(frota_escolhida.items())[0]  # Pegar o primeiro navio da frota
+    navio, qtd = list(frota_escolhida.items())[0]  # pega o primeiro navio da frota
     tamanho_navio = CONFIGURACAO[navio]
     
     print(f'Navio a ser alocado: 1 {navio} (Tamanho: {tamanho_navio} blocos)')
