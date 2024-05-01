@@ -193,15 +193,20 @@ def mapa_formatado(mapa_jogador, mapa_adversario):
     return matriz_jogador, matriz_adversario
 
 
-def print_maps(matriz_adversario, mapa_usuario):
+def print_maps(mapa_adversario, mapa_jogador):
     print("Mapa do adversário:".center(30), "Seu mapa:".center(40))
     print()
 
-    for linha_adv, linha_jog in zip(matriz_adversario, mapa_usuario):
-        linha_adv_str = " ".join(linha_adv).ljust(30)
+    for linha_jog, linha_adv in zip(mapa_jogador, mapa_adversario):
+        linha_adv_copia = linha_adv.copy()  # Copiando a linha do adversário para não modificar o original
+        # Esconder os navios do adversário (substituir 'N' por espaço em branco)
+        for i in range(len(linha_adv_copia)):
+            if linha_adv_copia[i] == 'N':
+                linha_adv_copia[i] = ' '
+        
+        linha_adv_str = " ".join(linha_adv_copia).ljust(30)
         linha_jog_str = " ".join(linha_jog).ljust(40)
         print(linha_adv_str, "   ", linha_jog_str)
-
 
 def mapa_formatado(mapa_jogador, mapa_adversario):
     matriz_jogador = []
@@ -288,9 +293,26 @@ def criar_mapa():
 
 def atirar(mapa):
     print(' ')
-    linha = int(input("Em qual linha você deseja atirar? (1-10): ")) 
-    coluna = ALFABETO.index(input("Em qual coluna você deseja atirar? (A-J): ").upper()) + 1
-    
+    linha = input("Em qual linha você deseja atirar? (1-10): ")
+    if fila in linhas: 
+        fila = int(fila)
+    else: 
+        while fila not in linhas: 
+            print ('Digite uma fileira válida (número de 1 a 10)!')
+            fila = (input(f"Digite o número da fila em que deseja atirar: "))
+            if fila in linhas: 
+                fila = int(fila)
+                break 
+    coluna = str(input(f"Em qual coluna deseja atirar (A-J)?: ")).upper() 
+    if coluna in ALFABETO: 
+        coluna = ALFABETO.index(coluna) + 1 
+    else: 
+        while coluna not in ALFABETO: 
+            print ('Digite uma letra válida (de A a J)!')
+            coluna = input(f"Digite a letra da coluna em que deseja atirar (A-J): ").upper() 
+            if coluna in ALFABETO: 
+                coluna = ALFABETO.index(coluna) + 1 
+                break
     if mapa[linha][coluna] == 'N':
         print("Você acertou um navio!")
         mapa[linha][coluna] = 'X'
