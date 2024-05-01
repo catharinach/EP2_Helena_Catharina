@@ -100,12 +100,12 @@ def aloca_navios3(mapa):
                 orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
                 x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
 
-            mapa_u = alocando2(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
+            mapa_u = alocando(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
 
-            print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+            print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
             print()
             for linha_adv, linha_jog in zip(mapa_adv, mapa_u):
-                print(" ".join(linha_adv).ljust(30), "  ", " ".join(linha_jog))
+                print(" ".join(linha_adv).ljust(10), "  ", " ".join(linha_jog))
 
     return mapa_u
 
@@ -118,10 +118,10 @@ while frota_escolhida:
            z = aloca_navios3(mapa_u)
         print ('')
 
-        print("Mapa do adversário:".center(20), "Seu mapa:".center(40))
+        print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
         print()
         for linha_adv, linha_jog in zip(mapa_adv, y):
-            print(" ".join(linha_adv).ljust(30), "  ", " ".join(linha_jog))
+            print(" ".join(linha_adv).ljust(10), "  ", " ".join(linha_jog))
 
         frota_escolhida[navio] -= 1
         if frota_escolhida[navio] == 0: 

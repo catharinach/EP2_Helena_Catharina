@@ -69,9 +69,9 @@ z = CORES['green']+CORES['reset']
 #cores de fundo para o terminal
 cores_background = {
     'red': '\u001b[41m ',
-    'green': '\u001b[42m ',
+    'green': '\033[42m ',
     'blue': '\u001b[44m ',
-    'reset': '\u001b[0m'
+    'reset': '\033[m'
 }
 
 y = cores_background['green']+cores_background['reset']

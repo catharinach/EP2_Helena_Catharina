@@ -40,7 +40,7 @@ def aloca_navios2(mapa, lista):
             coluna = random.randint(0, n-1)
             orientacao = random.choice(['h', 'v'])
             x = posicao_suporta(mapa, bloco, linha, coluna, orientacao)
-        mapa_computador = alocando2(mapa, bloco, linha, coluna, orientacao)
+        mapa_computador = alocando(mapa, bloco, linha, coluna, orientacao)
 
     return mapa_computador
 
@@ -49,12 +49,12 @@ def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
             if i >= 1:  
-                mapa[i][c] = u'\u001b[35m \u001b[0m'
+                mapa[i][c] = cores_background['green']+cores_background['reset']
 
     elif o == 'h':
         if l >= 1: 
             for j in range(c, c+b):
-                mapa[l][j] = u'\u001b[35m \u001b[0m'
+                mapa[l][j] = cores_background['green']+cores_background['reset']
 
     return mapa 
 
