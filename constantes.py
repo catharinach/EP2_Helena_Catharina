@@ -56,8 +56,8 @@ linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1
 CORES = {
     'reset': '\u001b[0m',
     'red': '\u001b[31m',
-    'black': '\u001b[30m',
-    'green': '\u001b[32m',
+    'black': '\u001b[30mN',
+    'green': '\u001b[32mN',
     'yellow': '\u001b[33m',
     'blue': '\u001b[34m',
     'magenta': '\u001b[35m',
@@ -65,14 +65,17 @@ CORES = {
     'white': '\u001b[37m'
 }
 
+z = CORES['green']+CORES['reset']
 #cores de fundo para o terminal
 cores_background = {
-    'red': '\u001b[41m',
-    'green': '\u001b[42m',
-    'blue': '\u001b[44m',
+    'red': '\u001b[41m ',
+    'green': '\u001b[42m ',
+    'blue': '\u001b[44m ',
     'reset': '\u001b[0m'
 }
 
-x = u"\u001b[32mN \u001b[0m"
-y = u'\u001b[42m \u001b[0m'
+y = cores_background['green']+cores_background['reset']
 print(y)
+print(z)
+a = cores_background['green']+cores_background['reset']
+print(a)

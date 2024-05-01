@@ -69,8 +69,6 @@ print('\nSe prepare para alocá-los!')
 print()
 
 mapa_usuario, mapa_adv = criar_mapa()
-#print_maps(matriz_adversario, mapa_usuario)
-
 
 lista = []
 for pais, info in PAISES.items():
@@ -79,9 +77,9 @@ for pais, info in PAISES.items():
             for i in range(qtd):
                 lista.append(CONFIGURACAO[navio])
 
-#mapa_u, mapa_adv = criar_mapa()
+
 mapa_computador = aloca_navios(mapa_adv, lista)
-#mapa_computador = aloca_navios(matriz_adversario, lista)
+
 
 print()
 orientacoes = ['v', 'h']

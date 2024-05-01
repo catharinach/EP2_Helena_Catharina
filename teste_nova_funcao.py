@@ -1,3 +1,5 @@
+#esse arquivo é apenas um teste, não é o jogo final!
+
 import time
 from constantes import *
 from operacoes import *
@@ -130,3 +132,5 @@ countdown = [5, 4, 3, 2, 1]
 for i in countdown:
     time.sleep(1)
     print(i)
+
+print_maps(mapa_computador, mapa_u)
