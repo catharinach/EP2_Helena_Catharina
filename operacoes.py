@@ -49,13 +49,12 @@ def alocando(mapa, b, l, c, o):
     if o == 'v':
         for i in range(l, l+b):
             if i >= 1:  
-                mapa[i][c] = cores_background['green']+cores_background['reset']
+                mapa[i][c] = CORES['reset']
 
     elif o == 'h':
         if l >= 1: 
             for j in range(c, c+b):
-                mapa[l][j] = cores_background['green']+cores_background['reset']
-
+                mapa[l][j] = CORES['reset']
     return mapa 
 
 def alocando2(mapa, b, l, c, o):

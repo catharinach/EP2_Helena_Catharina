@@ -100,7 +100,7 @@ def aloca_navios3(mapa):
                 orientacao = input("Digite 'h' para horizontal ou 'v' para vertical: ")
                 x = posicao_suporta(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
 
-            mapa_u = alocando(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
+            mapa_u = alocando2(mapa, CONFIGURACAO[navio], fila, coluna, orientacao)
 
             print("Mapa do adversário:".center(20), "Seu mapa:".center(30))
             print()

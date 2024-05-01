@@ -54,7 +54,7 @@ linhas = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1
 
 # cores de texto para o terminal
 CORES = {
-    'reset': '\u001b[0m',
+    'reset': '\u001b[0mN',
     'red': '\u001b[31m',
     'black': '\u001b[30mN',
     'green': '\u001b[32mN',
